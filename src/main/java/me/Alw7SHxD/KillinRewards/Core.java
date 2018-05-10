@@ -4,6 +4,7 @@ import me.Alw7SHxD.KillinRewards.commands.*;
 import me.Alw7SHxD.KillinRewards.evnets.EntityDeath;
 import me.Alw7SHxD.KillinRewards.evnets.PlayerDeath;
 import me.Alw7SHxD.KillinRewards.libs.Lists;
+import me.Alw7SHxD.KillinRewards.libs.SpigotUpdater;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.RegisteredServiceProvider;
@@ -18,8 +19,8 @@ public class Core extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        UpdateChecker updateChecker = new UpdateChecker(this);
-        updateChecker.check(this, getDescription().getVersion());
+        SpigotUpdater updateChecker = new SpigotUpdater(this);
+        updateChecker.check(getServer().getConsoleSender());
 
         saveDefaultConfig();
 
