@@ -1,6 +1,6 @@
 # Created by Alw7SHxD on July 2017.
 name: KillinRewards
-version: 0.5
+version: 0.5.1
 author: Alw7SHxD
 main: me.Alw7SHxD.KillinRewards.Core
 softdepend: [Vault]
