@@ -11,7 +11,7 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
- * KillinRewards was created by Alw7SHxD (C) 2017
+ * KillinRewards (2017) was created by Alw7SHxD (C) 2011-2018
  */
 public class Core extends JavaPlugin {
     private Lists lists;

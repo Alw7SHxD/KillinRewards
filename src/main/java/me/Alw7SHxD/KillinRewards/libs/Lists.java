@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * KillinRewards was created by Alw7SHxD (C) 2017
+ * KillinRewards (2017) was created by Alw7SHxD (C) 2011-2018
  */
 public class Lists {
     private Core core;

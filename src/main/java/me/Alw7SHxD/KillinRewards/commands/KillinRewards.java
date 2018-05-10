@@ -7,7 +7,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
 /**
- * KillinRewards was created by Alw7SHxD (C) 2017
+ * KillinRewards (2017) was created by Alw7SHxD (C) 2011-2018
  */
 public class KillinRewards implements CommandExecutor {
     private Core core;
