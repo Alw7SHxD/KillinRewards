@@ -28,8 +28,8 @@ public class Core extends JavaPlugin {
         this.lists.reload();
 
         if (!setupEconomy()) {
-            getLogger().severe("Please make sure to have an economy plugin installed,");
-            getLogger().severe("such as EssCore (made by: Alw7SHxD). or any other economy plugin, and Vault too.");
+            getLogger().info("Please make sure to have an economy plugin installed,");
+            getLogger().info("such as EssCore, or any other economy plugin, and Vault as well!");
             getLogger().info("Please note that you cannot reward players with money when you don't have vault and an economy plugin installed.");
             lists.setUsingVault(false);
         }else
