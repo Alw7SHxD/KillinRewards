@@ -78,7 +78,6 @@ public class EntityDeath implements Listener {
                         r = true;
                     }
             }
-            killer.sendMessage(st);
 
             if (r) {
                 if (killer.getWorld().getGameRuleValue("sendCommandFeedback").equalsIgnoreCase("true")) b = true;
