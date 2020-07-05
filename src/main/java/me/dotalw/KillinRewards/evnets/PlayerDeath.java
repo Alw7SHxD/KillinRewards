@@ -12,6 +12,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
  * KillinRewards (2017) was created by dotalw (C) 2011-2020
  * Licensed under the MIT license.
  */
+@SuppressWarnings("ConstantConditions")
 public class PlayerDeath implements Listener {
     private Core core;
 
@@ -28,9 +29,10 @@ public class PlayerDeath implements Listener {
         Player killer = player.getKiller();
         if (killer == null || killer == player) return;
 
-        Bukkit.getScheduler().runTask(core, () -> {
-            player.spigot().respawn();
-        });
+        if (core.getConfig().getBoolean("killin-players.immediate-respawn"))
+            Bukkit.getScheduler().runTask(core, () -> {
+                player.spigot().respawn();
+            });
 
         String st = null;
         if (core.getCache().isUsingVault()) {
@@ -41,13 +43,15 @@ public class PlayerDeath implements Listener {
 
                 if (killer.hasPermission(core.getCache().getBasePlayerPermission() + "." + st)) {
                     Double amount = core.getCache().getPlayerMoneyRewards().get(st);
-                    Double fixedAmount = Double.parseDouble(amount.toString().replace("-", ""));
+                    double fixedAmount = Double.parseDouble(amount.toString().replace("-", ""));
                     if (amount.toString().startsWith("-")) {
                         core.getEcon().withdrawPlayer(killer, fixedAmount);
-                        killer.sendMessage(Color.code(replace(core.getConfig().getString("messages.player-kill-take"), killer, player, fixedAmount)));
+                        if (core.getConfig().getBoolean("killin-players.reward-money.send-message"))
+                            killer.sendMessage(Color.code(replace(core.getConfig().getString("messages.player-kill-take"), killer, player, fixedAmount)));
                     } else {
                         core.getEcon().depositPlayer(killer, fixedAmount);
-                        killer.sendMessage(Color.code(replace(core.getConfig().getString("messages.player-kill-give"), killer, player, fixedAmount)));
+                        if (core.getConfig().getBoolean("killin-players.reward-money.send-message"))
+                            killer.sendMessage(Color.code(replace(core.getConfig().getString("messages.player-kill-give"), killer, player, fixedAmount)));
                     }
                 }
             }

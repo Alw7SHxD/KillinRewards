@@ -14,6 +14,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  * KillinRewards (2017) was created by dotalw (C) 2011-2020
  * Licensed under the MIT license.
  */
+@SuppressWarnings("ConstantConditions")
 public class Core extends JavaPlugin {
     private Cache cache;
     private Economy econ = null;
@@ -36,7 +37,7 @@ public class Core extends JavaPlugin {
         }else
             cache.setUsingVault(true);
 
-        if(getConfig().getDouble("kill-in-rewards") != 0.5d || getConfig().get("kill-in-rewards") == null) {
+        if(getConfig().getDouble("kill-in-rewards") != 0.6d || getConfig().get("kill-in-rewards") == null) {
             getLogger().warning("Your config.yml is old, please make sure to update it to the latest version.");
             getLogger().warning("Or you can manually update it by following the default one @ https://goo.gl/TQEZuZ");
         }

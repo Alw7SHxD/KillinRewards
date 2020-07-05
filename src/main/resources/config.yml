@@ -5,7 +5,7 @@
 # |>|-------------------------
 
 # Don't change this value unless you know what you're doing
-kill-in-rewards: 0.5
+kill-in-rewards: 0.6
 
 # Modify base permissions
 permissions:
@@ -24,8 +24,10 @@ messages:
 # Reward players when killing other players
 killin-players:
   enabled: true
+  immediate-respawn: true
   reward-money:
     enabled: true
+    send-message: true
     amounts: # give players "kr.player.<name>" permission, to get the given amount
       default: 5 # default is given by default to any one.
       vip: 10 # vip requires "kr.player.vip", and so on, you can add more.
@@ -43,6 +45,7 @@ killin-entities:
   enabled: true
   reward-money:
     enabled: true
+    send-message: true
     amounts: # give players "kr.player.<name>" permission, to get the given amount
       Zombie:
         default: 5

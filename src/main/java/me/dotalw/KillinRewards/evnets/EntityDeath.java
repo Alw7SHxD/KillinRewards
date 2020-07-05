@@ -15,6 +15,7 @@ import java.util.Collections;
  * KillinRewards (2017) was created by dotalw (C) 2011-2020
  * Licensed under the MIT license.
  */
+@SuppressWarnings("ConstantConditions")
 public class EntityDeath implements Listener {
     private Core core;
 
@@ -56,9 +57,11 @@ public class EntityDeath implements Listener {
                         Double fixedAmount = Double.parseDouble(amount.toString().replace("-", ""));
                         if (amount.toString().startsWith("-")) {
                             core.getEcon().withdrawPlayer(killer, fixedAmount);
-                            killer.sendMessage(Color.code(replace(core.getConfig().getString("messages.entity-kill-take"), killer, entity, fixedAmount)));
+                            if(core.getConfig().getBoolean("killin-entities.reward-money.send-message"))
+                                killer.sendMessage(Color.code(replace(core.getConfig().getString("messages.entity-kill-take"), killer, entity, fixedAmount)));
                         } else {
                             core.getEcon().depositPlayer(killer, fixedAmount);
+                            if(core.getConfig().getBoolean("killin-entities.reward-money.send-message"))
                             killer.sendMessage(Color.code(replace(core.getConfig().getString("messages.entity-kill-give"), killer, entity, fixedAmount)));
                         }
                     }
