@@ -3,4 +3,4 @@ out/
 target/
 src/test/
 /.idea/*
-.iml
+*.iml
