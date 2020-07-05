@@ -1,18 +1,19 @@
-package me.Alw7SHxD.KillinRewards.commands;
+package me.dotalw.KillinRewards.commands;
 
-import me.Alw7SHxD.KillinRewards.Core;
-import me.Alw7SHxD.KillinRewards.libs.Color;
+import me.dotalw.KillinRewards.Core;
+import me.dotalw.KillinRewards.libs.Color;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
 /**
- * KillinRewards (2017) was created by Alw7SHxD (C) 2011-2018
+ * KillinRewards (2017) was created by dotalw (C) 2011-2020
+ * Licensed under the MIT license.
  */
-public class KillinRewards implements CommandExecutor {
+public class KillinRewardsCommand implements CommandExecutor {
     private Core core;
 
-    public KillinRewards(Core core) {
+    public KillinRewardsCommand(Core core) {
         this.core = core;
     }
 
@@ -26,7 +27,7 @@ public class KillinRewards implements CommandExecutor {
                 }
 
                 core.reloadConfig();
-                core.getLists().reload();
+                core.getCache().reload();
                 commandSender.sendMessage(Color.code("&a&lSuccess! &7reloaded the configuration file."));
             }else if(strings[0].equalsIgnoreCase("help") || strings[0].equalsIgnoreCase("?")) {
                 commandSender.sendMessage(Color.code("    &c&lKillinRewards &7commands (1/1)"));

@@ -1,18 +1,15 @@
-package me.Alw7SHxD.KillinRewards.evnets;
+package me.dotalw.KillinRewards.evnets;
 
-import me.Alw7SHxD.KillinRewards.Core;
-import me.Alw7SHxD.KillinRewards.libs.Color;
+import me.dotalw.KillinRewards.Core;
+import me.dotalw.KillinRewards.libs.Color;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
 /**
- * KillinRewards (2017) was created by Alw7SHxD (C) 2011-2018
+ * KillinRewards (2017) was created by dotalw (C) 2011-2020
+ * Licensed under the MIT license.
  */
 public class PlayerDeath implements Listener {
     private Core core;
@@ -33,14 +30,14 @@ public class PlayerDeath implements Listener {
         player.spigot().respawn();
 
         String st = null;
-        if (core.getLists().isUsingVault()) {
+        if (core.getCache().isUsingVault()) {
             if (core.getConfig().getBoolean("killin-players.reward-money.enabled")) {
-                for (String s : core.getLists().getPlayerMoneyRewards().keySet())
-                    if (killer.hasPermission(core.getLists().getBasePlayerPermission() + "." + s))
+                for (String s : core.getCache().getPlayerMoneyRewards().keySet())
+                    if (killer.hasPermission(core.getCache().getBasePlayerPermission() + "." + s))
                         st = s;
 
-                if (killer.hasPermission(core.getLists().getBasePlayerPermission() + "." + st)) {
-                    Double amount = core.getLists().getPlayerMoneyRewards().get(st);
+                if (killer.hasPermission(core.getCache().getBasePlayerPermission() + "." + st)) {
+                    Double amount = core.getCache().getPlayerMoneyRewards().get(st);
                     Double fixedAmount = Double.parseDouble(amount.toString().replace("-", ""));
                     if (amount.toString().startsWith("-")) {
                         core.getEcon().withdrawPlayer(killer, fixedAmount);
@@ -60,12 +57,12 @@ public class PlayerDeath implements Listener {
                 boolean b = false;
                 if (killer.getWorld().getGameRuleValue("sendCommandFeedback").equalsIgnoreCase("true")) b = true;
                 killer.getWorld().setGameRuleValue("sendCommandFeedback", "false");
-                for (String s : core.getLists().getPlayerCommandsReward().keySet())
-                    if (killer.hasPermission(core.getLists().getBasePlayerPermission() + "." + s))
+                for (String s : core.getCache().getPlayerCommandsReward().keySet())
+                    if (killer.hasPermission(core.getCache().getBasePlayerPermission() + "." + s))
                         st = s;
 
-                if (killer.hasPermission(core.getLists().getBasePlayerPermission() + "." + st))
-                    for (String s : core.getLists().getPlayerCommandsReward().get(st))
+                if (killer.hasPermission(core.getCache().getBasePlayerPermission() + "." + st))
+                    for (String s : core.getCache().getPlayerCommandsReward().get(st))
                         core.getServer().dispatchCommand(core.getServer().getConsoleSender(), replace(s, killer, player));
                 if (b) killer.getWorld().setGameRuleValue("sendCommandFeedback", "true");
             }

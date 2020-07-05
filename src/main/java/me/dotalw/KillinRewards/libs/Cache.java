@@ -1,15 +1,15 @@
-package me.Alw7SHxD.KillinRewards.libs;
+package me.dotalw.KillinRewards.libs;
 
-import me.Alw7SHxD.KillinRewards.Core;
+import me.dotalw.KillinRewards.Core;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 /**
- * KillinRewards (2017) was created by Alw7SHxD (C) 2011-2018
+ * KillinRewards (2017) was created by dotalw (C) 2011-2020
+ * Licensed under the MIT license.
  */
-public class Lists {
+public class Cache {
     private Core core;
     private HashMap<String, Double> playerMoneyRewards = new HashMap<>();
     private HashMap<String, List<String>> playerCommandsReward = new HashMap<>();
@@ -18,7 +18,7 @@ public class Lists {
     private String basePlayerPermission = "kr.player";
     private boolean isUsingVault = false;
 
-    public Lists(Core core) {
+    public Cache(Core core) {
         this.core = core;
     }
 

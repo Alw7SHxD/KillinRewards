@@ -1,20 +1,21 @@
-package me.Alw7SHxD.KillinRewards;
+package me.dotalw.KillinRewards;
 
-import me.Alw7SHxD.KillinRewards.commands.*;
-import me.Alw7SHxD.KillinRewards.evnets.EntityDeath;
-import me.Alw7SHxD.KillinRewards.evnets.PlayerDeath;
-import me.Alw7SHxD.KillinRewards.libs.Lists;
-import me.Alw7SHxD.KillinRewards.libs.SpigotUpdater;
+import me.dotalw.KillinRewards.commands.KillinRewardsCommand;
+import me.dotalw.KillinRewards.evnets.EntityDeath;
+import me.dotalw.KillinRewards.evnets.PlayerDeath;
+import me.dotalw.KillinRewards.libs.Cache;
+import me.dotalw.KillinRewards.libs.SpigotUpdater;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
- * KillinRewards (2017) was created by Alw7SHxD (C) 2011-2018
+ * KillinRewards (2017) was created by dotalw (C) 2011-2020
+ * Licensed under the MIT license.
  */
 public class Core extends JavaPlugin {
-    private Lists lists;
+    private Cache cache;
     private Economy econ = null;
 
     @Override
@@ -24,16 +25,16 @@ public class Core extends JavaPlugin {
 
         saveDefaultConfig();
 
-        this.lists = new Lists(this);
-        this.lists.reload();
+        this.cache = new Cache(this);
+        this.cache.reload();
 
         if (!setupEconomy()) {
             getLogger().info("Please make sure to have an economy plugin installed,");
             getLogger().info("such as EssCore, or any other economy plugin, and Vault as well!");
             getLogger().info("Please note that you cannot reward players with money when you don't have vault and an economy plugin installed.");
-            lists.setUsingVault(false);
+            cache.setUsingVault(false);
         }else
-            lists.setUsingVault(true);
+            cache.setUsingVault(true);
 
         if(getConfig().getDouble("kill-in-rewards") != 0.5d || getConfig().get("kill-in-rewards") == null) {
             getLogger().warning("Your config.yml is old, please make sure to update it to the latest version.");
@@ -70,11 +71,11 @@ public class Core extends JavaPlugin {
     }
 
     private void registerC(){
-        getCommand("killinrewards").setExecutor(new KillinRewards(this));
+        getCommand("killinrewards").setExecutor(new KillinRewardsCommand(this));
     }
 
-    public Lists getLists() {
-        return lists;
+    public Cache getCache() {
+        return cache;
     }
 
     public Economy getEcon() {

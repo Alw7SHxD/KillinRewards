@@ -1,7 +1,7 @@
-package me.Alw7SHxD.KillinRewards.evnets;
+package me.dotalw.KillinRewards.evnets;
 
-import me.Alw7SHxD.KillinRewards.Core;
-import me.Alw7SHxD.KillinRewards.libs.Color;
+import me.dotalw.KillinRewards.Core;
+import me.dotalw.KillinRewards.libs.Color;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * KillinRewards (2017) was created by Alw7SHxD (C) 2011-2018
+ * KillinRewards (2017) was created by dotalw (C) 2011-2020
+ * Licensed under the MIT license.
  */
 public class EntityDeath implements Listener {
     private Core core;
@@ -36,13 +37,13 @@ public class EntityDeath implements Listener {
         ArrayList<String> str = new ArrayList<>();
         boolean r = false;
 
-        if (core.getLists().isUsingVault()) {
+        if (core.getCache().isUsingVault()) {
             if (core.getConfig().getBoolean("killin-entities.reward-money.enabled")) {
-                for (String s : core.getLists().getEntityMoneyRewards().keySet()) {
+                for (String s : core.getCache().getEntityMoneyRewards().keySet()) {
                     String[] parts = s.split("-");
                     if (!parts[0].equalsIgnoreCase(entity.getName()))
                         continue;
-                    if (killer.hasPermission(core.getLists().getBasePlayerPermission() + "." + parts[1])) {
+                    if (killer.hasPermission(core.getCache().getBasePlayerPermission() + "." + parts[1])) {
                         st = parts[1];
                         str.add(s);
                         r = true;
@@ -50,8 +51,8 @@ public class EntityDeath implements Listener {
                 }
 
                 if (r)
-                    if (killer.hasPermission(core.getLists().getBasePlayerPermission() + "." + st)) {
-                        Double amount = core.getLists().getEntityMoneyRewards().get(Collections.max(str));
+                    if (killer.hasPermission(core.getCache().getBasePlayerPermission() + "." + st)) {
+                        Double amount = core.getCache().getEntityMoneyRewards().get(Collections.max(str));
                         Double fixedAmount = Double.parseDouble(amount.toString().replace("-", ""));
                         if (amount.toString().startsWith("-")) {
                             core.getEcon().withdrawPlayer(killer, fixedAmount);
@@ -68,12 +69,12 @@ public class EntityDeath implements Listener {
         r = false;
         st = null;
         if (core.getConfig().getBoolean("killin-entities.reward-command.enabled")) {
-            for (String s : core.getLists().getEntityCommandsReward().keySet()) {
+            for (String s : core.getCache().getEntityCommandsReward().keySet()) {
                 if (!s.equalsIgnoreCase(entity.getName()))
                     continue;
 
-                for (String st1 : core.getLists().getEntityCommandsReward().get(s).keySet())
-                    if (killer.hasPermission(core.getLists().getBasePlayerPermission() + "." + st1)) {
+                for (String st1 : core.getCache().getEntityCommandsReward().get(s).keySet())
+                    if (killer.hasPermission(core.getCache().getBasePlayerPermission() + "." + st1)) {
                         st = st1;
                         r = true;
                     }
@@ -82,13 +83,13 @@ public class EntityDeath implements Listener {
             if (r) {
                 if (killer.getWorld().getGameRuleValue("sendCommandFeedback").equalsIgnoreCase("true")) b = true;
                 killer.getWorld().setGameRuleValue("sendCommandFeedback", "false");
-                for (String s : core.getLists().getEntityCommandsReward().keySet()) {
+                for (String s : core.getCache().getEntityCommandsReward().keySet()) {
                     if (s.equalsIgnoreCase(entity.getName())) {
-                        for (String s0 : core.getLists().getEntityCommandsReward().get(s).keySet()) {
+                        for (String s0 : core.getCache().getEntityCommandsReward().get(s).keySet()) {
                             if (!s0.equalsIgnoreCase(st))
                                 continue;
-                            if (killer.hasPermission(core.getLists().getBasePlayerPermission() + "." + st)) {
-                                for (String s1 : core.getLists().getEntityCommandsReward().get(s).get(s0))
+                            if (killer.hasPermission(core.getCache().getBasePlayerPermission() + "." + st)) {
+                                for (String s1 : core.getCache().getEntityCommandsReward().get(s).get(s0))
                                     core.getServer().dispatchCommand(core.getServer().getConsoleSender(), replace(s1, killer, entity));
                                 break;
                             }

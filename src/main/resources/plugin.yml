@@ -1,8 +1,8 @@
-# Created by Alw7SHxD on July 2017.
+# Created by dotalw on July 2017.
 name: KillinRewards
-version: 0.5.1.1
-author: Alw7SHxD
-main: me.Alw7SHxD.KillinRewards.Core
+version: 0.5.2
+author: dotalw
+main: me.dotalw.KillinRewards.Core
 softdepend: [Vault]
 permissions:
   kr.player.default:

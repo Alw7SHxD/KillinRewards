@@ -1,6 +1,6 @@
-package me.Alw7SHxD.KillinRewards.libs;
+package me.dotalw.KillinRewards.libs;
 
-import me.Alw7SHxD.KillinRewards.Core;
+import me.dotalw.KillinRewards.Core;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -12,8 +12,9 @@ import java.net.URL;
 import java.net.URLConnection;
 
 /**
- * KillinRewards (2017) made by Alw7SHxD (C) 2011-2018
- * @author Alw7SHxD
+ * KillinRewards (2017) was created by dotalw (C) 2011-2020
+ * Licensed under the MIT license.
+ * @author dotalw
  *
  * This class was created to check updates using SpigotMC's legacy API.
  * @author iShadey
