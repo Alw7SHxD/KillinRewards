@@ -3,6 +3,7 @@ name: KillinRewards
 version: 0.5.2
 author: dotalw
 main: me.dotalw.KillinRewards.Core
+api-version: 1.16
 softdepend: [Vault]
 permissions:
   kr.player.default:
