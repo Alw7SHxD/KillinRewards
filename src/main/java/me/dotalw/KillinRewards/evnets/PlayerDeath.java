@@ -2,6 +2,7 @@ package me.dotalw.KillinRewards.evnets;
 
 import me.dotalw.KillinRewards.Core;
 import me.dotalw.KillinRewards.libs.Color;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -25,9 +26,11 @@ public class PlayerDeath implements Listener {
 
         Player player = e.getEntity();
         Player killer = player.getKiller();
-        if (killer == null) return;
+        if (killer == null || killer == player) return;
 
-        player.spigot().respawn();
+        Bukkit.getScheduler().runTask(core, () -> {
+            player.spigot().respawn();
+        });
 
         String st = null;
         if (core.getCache().isUsingVault()) {
