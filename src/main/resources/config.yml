@@ -1,7 +1,7 @@
 # |>|-------------------------
-# |<|   KillinRewards (v0.5.1)
-# |>|   Created with <3 by
-# |<|       Alw7SHxD.
+# |<|   KillinRewards (v0.5.2)
+# |>|     Created with <3
+# |<|       by dotalw
 # |>|-------------------------
 
 # Don't change this value unless you know what you're doing
@@ -33,11 +33,11 @@ killin-players:
     enabled: false
     commands:
       default:
-        - give %player% minecraft:diamond 1
-        - give %player% minecraft:iron_ingot 10
+        - "give %player% minecraft:diamond 1"
+        - "give %player% minecraft:iron_ingot 10"
       vip:
-        - give %player% minecraft:diamond 3
-        - give %player% minecraft:iron_ingot 25
+        - "give %player% minecraft:diamond 3"
+        - "give %player% minecraft:iron_ingot 25"
 # Reward players when killing entities
 killin-entities:
   enabled: true
@@ -55,13 +55,13 @@ killin-entities:
     commands:
       Zombie:
         default:
-          - give %player% minecraft:feather 3
-          - give %player% minecraft:gold_nugget 1
+          - "give %player% minecraft:feather 3"
+          - "give %player% minecraft:gold_nugget 1"
         vip:
-          - give %player% minecraft:feather 6
-          - give %player% minecraft:gold_nugget 3
+          - "give %player% minecraft:feather 6"
+          - "give %player% minecraft:gold_nugget 3"
       Cow:
         default:
-          - give %player% minecraft:bone 3
+          - "give %player% minecraft:bone 3"
         vip:
-          - give %player% minecraft:bone 6
+          - "give %player% minecraft:bone 6"
