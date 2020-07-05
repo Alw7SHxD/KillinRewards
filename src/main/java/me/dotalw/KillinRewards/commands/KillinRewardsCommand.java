@@ -35,8 +35,8 @@ public class KillinRewardsCommand implements CommandExecutor {
             }else
                 commandSender.sendMessage(Color.code(String.format("&c&lWoah! &7correct usage &6/%s &9help", s)));
         }else{
-            commandSender.sendMessage(Color.code(String.format("&a&lKillinRewards &7version &a&l%s", core.getDescription().getVersion())));
-            commandSender.sendMessage(Color.code("&7Created by &a&lAlw7SHxD"));
+            commandSender.sendMessage(Color.code(String.format("&c&lKillinRewards &7version &c&l%s", core.getDescription().getVersion())));
+            commandSender.sendMessage(Color.code("&7Created by &c&ldotalw"));
         }
         return true;
     }
